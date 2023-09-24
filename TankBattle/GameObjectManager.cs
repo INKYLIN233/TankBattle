@@ -96,12 +96,23 @@ namespace TankBattle
             enemyBornCount = 0;
         }
 
+        /// <summary>
+        /// 生成子弹，并添加进子弹列表
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <param name="speed"></param>
+        /// <param name="tag"></param>
+        /// <param name="dir"></param>
         public static void CreatBullet(int x, int y, int speed, Tag tag, Direction dir)
         {
             Bullet bullet = new Bullet(x, y, speed * 2, dir, tag);
             bulletList.Add(bullet);
         }
 
+        /// <summary>
+        /// 检测是否需要删除子弹
+        /// </summary>
         private static void CheckAndDestroyBulllet()
         {
             List<Bullet> needToDestroy = new List<Bullet>();
@@ -118,6 +129,10 @@ namespace TankBattle
             }
         }
 
+        /// <summary>
+        /// 摧毁墙
+        /// </summary>
+        /// <param name="wall"></param>
         public static void DestroyWall(ImmovableThing wall)
         {
             wallList.Remove(wall);
@@ -147,6 +162,11 @@ namespace TankBattle
         #endregion
 
         #region 碰撞检测机制
+        /// <summary>
+        /// 检测是否与墙体图片发生接触，如果发生接触，则返回true
+        /// </summary>
+        /// <param name="rct"></param>
+        /// <returns></returns>
         public static ImmovableThing IsCollidedWall(Rectangle rct)
         {
             foreach (var item in wallList)
